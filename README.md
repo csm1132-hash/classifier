@@ -18,11 +18,22 @@ python -m http.server 8000      # index.html 을 더블클릭하면 안 됩니�
 2. vercel.com → Add New → Project → Import → Application Preset: Other → Deploy
 3. Settings → Environment Variables
      GEMINI_API_KEY = (aistudio.google.com 에서 받은 키)
-     GEMINI_MODEL   = (선택. 비우면 api/classify.py 의 기본값)
+     GEMINI_MODEL   = (선택. 화면에서 «서버 기본값»을 골랐을 때 쓰는 모델. 비우면 api/classify.py 의 DEFAULT_MODEL)
    → 저장하고 다시 배포
 ```
 
 **키가 없으면 AI만 빠지고 나머지는 그대로 돕니다.**
+
+## AI 모델 고르기
+
+화면 맨 위 **AI 모델**에서 고릅니다. 재배포하지 않아도 됩니다.
+
+- **서버 기본값** — 서버가 정합니다(`GEMINI_MODEL` → 없으면 코드의 기본값). 아래 줄에 그 이름이 보입니다
+- **목록의 모델** — 2026-11-06 가격표에서 무료로 표시된 글쓰기 모델 다섯 개. 순서는 무료 한도를 **추정**한 것이고 근거는 없습니다
+- **직접 입력…** — 가격표의 모델 코드를 그대로 적습니다. 영문·숫자·`. _ -` 만, 64자 이하. 형식이 틀리면 서버가 AI를 부르지 않습니다
+
+고른 값은 이 브라우저에만 기억합니다. 채점 표의 AI 열 제목에 실제로 쓰인 모델 이름이 붙어서, 모델을 바꿔 가며 점수를 비교할 수 있습니다.
+AI 채점은 10문장씩 나눠 보내고, 한 묶음이 시간 안에 오지 않으면 그 묶음만 한 번 더 보냅니다.
 
 ## 파일
 
